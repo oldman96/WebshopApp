@@ -5,6 +5,8 @@
  */
 package webshopapp;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author oldman96
@@ -34,7 +36,7 @@ public class WebshopApp extends javax.swing.JFrame {
         cartBtn = new javax.swing.JButton();
         wishListBtn = new javax.swing.JButton();
         moreFeaturesBtn = new javax.swing.JButton();
-        moreFeaturesBtn1 = new javax.swing.JButton();
+        aboutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WebshopApp");
@@ -75,9 +77,19 @@ public class WebshopApp extends javax.swing.JFrame {
         moreFeaturesBtn.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         moreFeaturesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-lock-32.png"))); // NOI18N
         moreFeaturesBtn.setText("More Features");
+        moreFeaturesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moreFeaturesBtnActionPerformed(evt);
+            }
+        });
 
-        moreFeaturesBtn1.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
-        moreFeaturesBtn1.setText("About");
+        aboutBtn.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
+        aboutBtn.setText("About");
+        aboutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -95,7 +107,7 @@ public class WebshopApp extends javax.swing.JFrame {
                 .addContainerGap(160, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(moreFeaturesBtn1)
+                .addComponent(aboutBtn)
                 .addContainerGap())
             .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -112,7 +124,7 @@ public class WebshopApp extends javax.swing.JFrame {
                     .addComponent(wishListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(moreFeaturesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(moreFeaturesBtn1)
+                .addComponent(aboutBtn)
                 .addContainerGap())
         );
 
@@ -129,6 +141,19 @@ public class WebshopApp extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void moreFeaturesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreFeaturesBtnActionPerformed
+        JOptionPane.showMessageDialog(this,
+    "Future updates, not included in the assignment of the Java course!");
+    }//GEN-LAST:event_moreFeaturesBtnActionPerformed
+
+    private void aboutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutBtnActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new About().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_aboutBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,11 +188,11 @@ public class WebshopApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aboutBtn;
     private javax.swing.JButton cartBtn;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton moreFeaturesBtn;
-    private javax.swing.JButton moreFeaturesBtn1;
     private javax.swing.JButton shopBtn;
     private javax.swing.JLabel webshopLabel;
     private javax.swing.JButton wishListBtn;

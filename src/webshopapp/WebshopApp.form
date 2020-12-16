@@ -59,7 +59,7 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="moreFeaturesBtn1" min="-2" max="-2" attributes="0"/>
+                  <Component id="aboutBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Component id="headerPanel" alignment="0" max="32767" attributes="0"/>
@@ -80,7 +80,7 @@
                       <Component id="moreFeaturesBtn" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="77" max="32767" attributes="0"/>
-                  <Component id="moreFeaturesBtn1" min="-2" max="-2" attributes="0"/>
+                  <Component id="aboutBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -166,14 +166,20 @@
             </Property>
             <Property name="text" type="java.lang.String" value="More Features"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="moreFeaturesBtnActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="moreFeaturesBtn1">
+        <Component class="javax.swing.JButton" name="aboutBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Candara" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="About"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aboutBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

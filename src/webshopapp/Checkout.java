@@ -18,8 +18,7 @@ public class Checkout extends javax.swing.JFrame {
      */
     public Checkout() {
         initComponents();
-        payButton.setEnabled(false);
-        
+        payButton.setEnabled(false); 
     }
 
     /**
@@ -141,18 +140,21 @@ public class Checkout extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void cardTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cardTextFieldKeyPressed
         if(!nameTextField.getText().equals("") && !cardTextField.getText().equals("")){
             payButton.setEnabled(true);
         }
     }//GEN-LAST:event_cardTextFieldKeyPressed
 
+    
     private void nameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameTextFieldKeyPressed
         if(!nameTextField.getText().equals("") && !cardTextField.getText().equals("")){
             payButton.setEnabled(true);
         }
     }//GEN-LAST:event_nameTextFieldKeyPressed
 
+    
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
         JOptionPane.showMessageDialog(this,"Ordered successfull!");
         dispose();

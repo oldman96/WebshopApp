@@ -32,30 +32,24 @@ import javax.swing.table.TableRowSorter;
  * @author oldman96
  */
 public class ProductList extends javax.swing.JFrame {
-    private ProductTableModel productTableModel;
-    private CartAndWishlistTableModel cartTableModel;
-    private int filterByColumn;
-    private List<Product> productsToCart;
-    private Double total;
+    
     /**
      * Creates new form ProductList
      * 
      * 
+     * @throws java.io.FileNotFoundException
      */
-    public ProductList(){
+    
+    public ProductList() throws FileNotFoundException{
         initComponents();
         createProductTableModel();
-//        productTableModel = tableModel;
         
         productListTable.setModel(productTableModel);
-        
         TableCellRenderer buttonRenderer = new JTableButtonRenderer();
         productListTable.getColumn("Add to Cart").setCellRenderer(buttonRenderer);
         productListTable.getColumn("Wishlist").setCellRenderer(buttonRenderer);
         productListTable.addMouseListener(new JTableButtonMouseListener(productListTable));
-//        jTable1.getColumnModel().getColumn(0).setPreferredWidth(415);
         productListTable.getColumnModel().getColumn(0).setMinWidth(415);
-        //jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
         productListTable.getColumnModel().getColumn(2).setMinWidth(150);
         productListTable.getColumnModel().getColumn(1).setMinWidth(100);
         productListTable.getColumnModel().getColumn(3).setMinWidth(100);
@@ -69,9 +63,11 @@ public class ProductList extends javax.swing.JFrame {
         filterComboBox.setSelectedIndex(0);
     }
     
+    
     public List<Product> getProductsToCart() {
         return productsToCart;
     }
+    
     
     public Double getTotal(){
         return total;
@@ -88,36 +84,6 @@ public class ProductList extends javax.swing.JFrame {
         productListTable.setRowSorter(sorter);
     }
       
-    private static class JTableButtonRenderer implements TableCellRenderer {        
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            JButton button = (JButton)value;
-            return button;  
-        }
-    }
-    
-    private static class JTableButtonMouseListener extends MouseAdapter {
-        private final JTable table;
-
-        public JTableButtonMouseListener(JTable table) {
-            this.table = table;
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            int column = table.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
-            int row    = e.getY()/table.getRowHeight(); //get the row of the button
-
-                    /*Checking the row or column is valid or not*/
-            if (row < table.getRowCount() && row >= 0 && column < table.getColumnCount() && column >= 0) {
-                Object value = table.getValueAt(row, column);
-                if (value instanceof JButton) {
-                    /*perform a click event*/
-                    ((JButton)value).doClick();
-                }
-            }
-        }
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -266,19 +232,23 @@ public class ProductList extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void filterTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextFieldKeyReleased
         String filterText = Pattern.quote(filterTextField.getText());
         tableFilter(filterText);
     }//GEN-LAST:event_filterTextFieldKeyReleased
 
+    
     private void filterComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_filterComboBoxItemStateChanged
         filterByColumn = filterComboBox.getSelectedIndex();  
     }//GEN-LAST:event_filterComboBoxItemStateChanged
 
+    
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         createCartTableModel();
         calculateTotal();
@@ -290,56 +260,12 @@ public class ProductList extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ProductList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ProductList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ProductList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ProductList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ProductList().setVisible(true);
-//            }
-//        });
-//    }
-    private void createProductTableModel(){
-        try {
-            productTableModel = new ProductTableModel();
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null,
-                                          "Product data cannot be loaded!\n"
-                                          + "File not found.",
-                                          "Error",
-                                          JOptionPane.ERROR_MESSAGE);
-        }
-        
+    private void createProductTableModel() throws FileNotFoundException{
+            productTableModel = new ProductTableModel();    
     }
     
     private void createCartTableModel(){
         try {
-            
             cartTableModel = new CartAndWishlistTableModel();
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null,
@@ -348,8 +274,8 @@ public class ProductList extends javax.swing.JFrame {
                                           "Error",
                                           JOptionPane.ERROR_MESSAGE);
         }
-        
     }
+    
     
     private void calculateTotal(){
         Double sum = 0.0; 
@@ -360,8 +286,11 @@ public class ProductList extends javax.swing.JFrame {
     }
     
     
-    
-    
+    private ProductTableModel productTableModel;
+    private CartAndWishlistTableModel cartTableModel;
+    private int filterByColumn;
+    private List<Product> productsToCart;
+    private Double total;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JLabel filterByLabel;
@@ -379,12 +308,8 @@ public class ProductTableModel extends AbstractTableModel{
         private final String DEFAULT_INPUT_FILENAME = "products";
         private final String[] columnNames;
         private final List<Product> products;
-        //private Object [][] data;
 
-    
-
-    
-
+        
         public ProductTableModel() throws FileNotFoundException {
             this.columnNames = new String[]{"Product name", "Price ($)", "Category", "Quantity (pcs)", "Add to Cart", "Wishlist"};
             products = new ArrayList<>();
@@ -398,16 +323,19 @@ public class ProductTableModel extends AbstractTableModel{
               return products.size();
         }
 
+        
         @Override
         public int getColumnCount() {
              return columnNames.length;
         }
 
+        
         @Override
         public String getColumnName(int col) {
             return columnNames[col];
         }
 
+        
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             JButton addToCartButton = new JButton(columnNames[columnIndex]);
@@ -444,11 +372,11 @@ public class ProductTableModel extends AbstractTableModel{
                 }
         }
         
+        
         @Override
         public void setValueAt(Object value, int rowIndex, int columnIndex)
         {
             Product product = products.get(rowIndex);
-
             switch (columnIndex)
                 {
                     case 0: product.setProductName((String)value);
@@ -456,15 +384,16 @@ public class ProductTableModel extends AbstractTableModel{
                     case 2: product.setCategory((String)value);
                     case 3: product.setQuantity((Integer)value);
                 }
-
             fireTableCellUpdated(rowIndex, columnIndex);
         }
 
+        
         @Override
         public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
         }
 
+        
         //Termeklista feltoltese fajlbol
         private void loadProductDataFromInputFile() throws FileNotFoundException{
             BufferedReader reader;
@@ -492,50 +421,40 @@ public class ProductTableModel extends AbstractTableModel{
                 e.printStackTrace();
             }
         }
-
-    //        private void loadDataIntoTable(){
-//            Object rowData[] = new Object[productList.size()];
-//            
-//            for(int i=0; i<productList.size(); i++){
-//            rowData[0] = productList.get(i).getProductName();
-//            rowData[1] = productList.get(i).getPrice();
-//            rowData[2] = productList.get(i).getCategory();
-//            rowData[3] = productList.get(i).getQuantity();
-//            //data[i]=rowData;
-//            jTable1.addRow(rowData);
-//            }
-//        }
     }
 
-public class CartAndWishlistTableModel extends AbstractTableModel{
+
+    public class CartAndWishlistTableModel extends AbstractTableModel{
         private final String[] columnNames;
-        //private final List<Product> productsInCart;
-        //private Object [][] data;
+
 
         public CartAndWishlistTableModel() throws FileNotFoundException {
             this.columnNames = new String[]{"Product name", "Price ($)", "Remove"};
-            //productsInCart = productsToCart;
-           
         }
-       
+
+
         public List<Product> getProductsToCart(){
             return productsToCart;
         } 
-        
+
+
         @Override
         public int getRowCount() {
               return productsToCart.size();
         }
+
 
         @Override
         public int getColumnCount() {
              return columnNames.length;
         }
 
+
         @Override
         public String getColumnName(int col) {
             return columnNames[col];
         }
+
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
@@ -547,8 +466,7 @@ public class CartAndWishlistTableModel extends AbstractTableModel{
                             productsToCart.get(rowIndex).getProductName()+ "\n\nRemoved!");
                     productsToCart.remove(rowIndex);
                     fireTableDataChanged();
-                    calculateTotal();
-                            
+                    calculateTotal();        
                 }
             });
 
@@ -561,25 +479,57 @@ public class CartAndWishlistTableModel extends AbstractTableModel{
                     default: return null;
                 }
         }
-        
+
+
         @Override
         public void setValueAt(Object value, int rowIndex, int columnIndex)
         {
             Product product = productsToCart.get(rowIndex);
-
             switch (columnIndex)
                 {
                     case 0: product.setProductName((String)value);
                     case 1: product.setPrice((Float)value);
                 }
-
             fireTableCellUpdated(rowIndex, columnIndex);
         }
+
 
         @Override
         public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
         }
-}
+    }
     
+    
+    private static class JTableButtonRenderer implements TableCellRenderer {        
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            JButton button = (JButton)value;
+            return button;  
+        }
+    }
+    
+    
+    private static class JTableButtonMouseListener extends MouseAdapter {
+        private final JTable table;
+
+        public JTableButtonMouseListener(JTable table) {
+            this.table = table;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            int column = table.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
+            int row    = e.getY()/table.getRowHeight(); //get the row of the button
+
+                    /*Checking the row or column is valid or not*/
+            if (row < table.getRowCount() && row >= 0 && column < table.getColumnCount() && column >= 0) {
+                Object value = table.getValueAt(row, column);
+                if (value instanceof JButton) {
+                    /*perform a click event*/
+                    ((JButton)value).doClick();
+                }
+            }
+        }
+    }
 }

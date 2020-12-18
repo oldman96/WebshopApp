@@ -19,7 +19,6 @@ public class WebshopApp extends javax.swing.JFrame {
      */
     public WebshopApp(){
         initComponents();
-        
     }
 
     /**
@@ -156,29 +155,21 @@ public class WebshopApp extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void shopBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopBtnActionPerformed
-//        createProductTableModel();
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                    
+            public void run() {    
+                try {
                     new ProductList().setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null,
+                                          "Product data cannot be loaded!\n"
+                                          + "File not found.",
+                                          "Error",
+                                          JOptionPane.ERROR_MESSAGE);
                 }
-            });
+            }
+        });
     }//GEN-LAST:event_shopBtnActionPerformed
 
-//    private void createProductTableModel(){
-//        try {
-//            productTableModel = new ProductTableModel();
-//        } catch (FileNotFoundException ex) {
-//            JOptionPane.showMessageDialog(null,
-//                                          "Product data cannot be loaded!\n"
-//                                          + "File not found.",
-//                                          "Error",
-//                                          JOptionPane.ERROR_MESSAGE);
-//        }
-//        
-//    }
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -210,7 +201,6 @@ public class WebshopApp extends javax.swing.JFrame {
             }
         });
     }
-    //private ProductTableModel productTableModel;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutBtn;

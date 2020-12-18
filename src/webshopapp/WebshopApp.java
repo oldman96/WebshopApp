@@ -6,8 +6,6 @@
 package webshopapp;
 
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,8 +17,9 @@ public class WebshopApp extends javax.swing.JFrame {
     /**
      * Creates new form WebshopApp
      */
-    public WebshopApp() {
+    public WebshopApp(){
         initComponents();
+        
     }
 
     /**
@@ -77,6 +76,11 @@ public class WebshopApp extends javax.swing.JFrame {
         cartBtn.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         cartBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-shopping-cart-32.png"))); // NOI18N
         cartBtn.setText("Cart");
+        cartBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cartBtnActionPerformed(evt);
+            }
+        });
 
         wishListBtn.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         wishListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-wish-list-32.png"))); // NOI18N
@@ -123,15 +127,15 @@ public class WebshopApp extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cartBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(shopBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                    .addComponent(shopBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cartBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(77, 77, 77)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wishListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(moreFeaturesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(aboutBtn)
                 .addContainerGap())
         );
@@ -164,21 +168,38 @@ public class WebshopApp extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutBtnActionPerformed
 
     private void shopBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopBtnActionPerformed
+//        createProductTableModel();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
+                    
                     new ProductList().setVisible(true);
-                } catch (FileNotFoundException ex) {
-                    JOptionPane.showMessageDialog(null,
-                                          "Product data cannot be loaded!\n"
-                                          + "File not found.",
-                                          "Error",
-                                          JOptionPane.ERROR_MESSAGE);
                 }
-            }
-        });
+            });
     }//GEN-LAST:event_shopBtnActionPerformed
 
+    private void cartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartBtnActionPerformed
+//        createCartTableModel();
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Cart(cartTableModel).setVisible(true);
+//            }
+//        });
+    }//GEN-LAST:event_cartBtnActionPerformed
+
+//    private void createProductTableModel(){
+//        try {
+//            productTableModel = new ProductTableModel();
+//        } catch (FileNotFoundException ex) {
+//            JOptionPane.showMessageDialog(null,
+//                                          "Product data cannot be loaded!\n"
+//                                          + "File not found.",
+//                                          "Error",
+//                                          JOptionPane.ERROR_MESSAGE);
+//        }
+//        
+//    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -210,7 +231,8 @@ public class WebshopApp extends javax.swing.JFrame {
             }
         });
     }
-
+    //private ProductTableModel productTableModel;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutBtn;
     private javax.swing.JButton cartBtn;
@@ -221,4 +243,6 @@ public class WebshopApp extends javax.swing.JFrame {
     private javax.swing.JLabel webshopLabel;
     private javax.swing.JButton wishListBtn;
     // End of variables declaration//GEN-END:variables
+
+
 }

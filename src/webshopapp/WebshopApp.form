@@ -46,15 +46,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="159" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="shopBtn" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="wishListBtn" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="83" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="moreFeaturesBtn" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="cartBtn" min="-2" pref="200" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="shopBtn" min="-2" pref="200" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="wishListBtn" min="-2" pref="200" max="-2" attributes="0"/>
                   <EmptySpace pref="158" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
@@ -63,6 +57,11 @@
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Component id="headerPanel" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="299" max="-2" attributes="0"/>
+                  <Component id="moreFeaturesBtn" min="-2" pref="200" max="-2" attributes="0"/>
+                  <EmptySpace pref="301" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -72,14 +71,11 @@
                   <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="shopBtn" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="cartBtn" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="wishListBtn" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="moreFeaturesBtn" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="58" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="moreFeaturesBtn" min="-2" pref="100" max="-2" attributes="0"/>
+                  <EmptySpace pref="88" max="32767" attributes="0"/>
                   <Component id="aboutBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -135,20 +131,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shopBtnActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="cartBtn">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Candara" size="18" style="1"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icons/icons8-shopping-cart-32.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Cart"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cartBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="wishListBtn">

@@ -33,12 +33,14 @@ import javax.swing.table.TableRowSorter;
  */
 public class ProductList extends javax.swing.JFrame {
     private ProductTableModel productTableModel;
+    private CartAndWishlistTableModel cartTableModel;
     private int filterByColumn;
     private List<Product> productsToCart;
+    private Double total;
     /**
      * Creates new form ProductList
      * 
-     * @param tableModel
+     * 
      */
     public ProductList(){
         initComponents();
@@ -66,6 +68,15 @@ public class ProductList extends javax.swing.JFrame {
         productListTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         filterComboBox.setSelectedIndex(0);
     }
+    
+    public List<Product> getProductsToCart() {
+        return productsToCart;
+    }
+    
+    public Double getTotal(){
+        return total;
+    }
+        
     
     private void tableFilter(String filterText){
         
@@ -192,7 +203,9 @@ public class ProductList extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-shopping-cart-32.png"))); // NOI18N
+        jButton1.setText("Cart");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -203,29 +216,35 @@ public class ProductList extends javax.swing.JFrame {
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
                 .addComponent(webshopLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(filterByLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(filterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(filterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addComponent(filterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(backButton)
-                .addGap(18, 18, 18))
+                .addGap(34, 34, 34))
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(webshopLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(filterByLabel)
-                .addComponent(filterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(filterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(backButton)
-                .addComponent(jButton1))
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(webshopLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(filterByLabel)
+                        .addComponent(filterComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(filterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(headerPanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -239,7 +258,7 @@ public class ProductList extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -262,25 +281,15 @@ public class ProductList extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         createCartTableModel();
+        calculateTotal();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cart(cartTableModel).setVisible(true);
+                new Cart(cartTableModel, getTotal()).setVisible(true);
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void createCartTableModel(){
-        try {
-            cartTableModel = new CartAndWishlistTableModel(productsToCart);
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null,
-                                          "Product data cannot be loaded!\n"
-                                          + "File not found.",
-                                          "Error",
-                                          JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }
+    
     /**
      * @param args the command line arguments
      */
@@ -328,7 +337,31 @@ public class ProductList extends javax.swing.JFrame {
         
     }
     
-    private CartAndWishlistTableModel cartTableModel;
+    private void createCartTableModel(){
+        try {
+            
+            cartTableModel = new CartAndWishlistTableModel();
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null,
+                                          "Product data cannot be loaded!\n"
+                                          + "File not found.",
+                                          "Error",
+                                          JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    
+    private void calculateTotal(){
+        Double sum = 0.0; 
+        for(int i=0; i<productsToCart.size(); i++){
+            sum += productsToCart.get(i).getPrice();
+        }
+        total = sum;
+    }
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JLabel filterByLabel;
@@ -359,10 +392,7 @@ public class ProductTableModel extends AbstractTableModel{
             loadProductDataFromInputFile();       
         }
 
-        public List<Product> getProductsToCart() {
-        return productsToCart;
-    }
-        
+
         @Override
         public int getRowCount() {
               return products.size();
@@ -476,5 +506,80 @@ public class ProductTableModel extends AbstractTableModel{
 //            }
 //        }
     }
+
+public class CartAndWishlistTableModel extends AbstractTableModel{
+        private final String[] columnNames;
+        //private final List<Product> productsInCart;
+        //private Object [][] data;
+
+        public CartAndWishlistTableModel() throws FileNotFoundException {
+            this.columnNames = new String[]{"Product name", "Price ($)", "Remove"};
+            //productsInCart = productsToCart;
+           
+        }
+       
+        public List<Product> getProductsToCart(){
+            return productsToCart;
+        } 
+        
+        @Override
+        public int getRowCount() {
+              return productsToCart.size();
+        }
+
+        @Override
+        public int getColumnCount() {
+             return columnNames.length;
+        }
+
+        @Override
+        public String getColumnName(int col) {
+            return columnNames[col];
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            JButton removeButton = new JButton(columnNames[columnIndex]);
+            removeButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(JOptionPane.getFrameForComponent(removeButton), 
+                            productsToCart.get(rowIndex).getProductName()+ "\n\nRemoved!");
+                    productsToCart.remove(rowIndex);
+                    fireTableDataChanged();
+                    calculateTotal();
+                            
+                }
+            });
+
+            Product product = productsToCart.get(rowIndex);
+            switch (columnIndex)
+                {
+                    case 0: return product.getProductName();
+                    case 1: return product.getPrice();
+                    case 2: return removeButton;
+                    default: return null;
+                }
+        }
+        
+        @Override
+        public void setValueAt(Object value, int rowIndex, int columnIndex)
+        {
+            Product product = productsToCart.get(rowIndex);
+
+            switch (columnIndex)
+                {
+                    case 0: product.setProductName((String)value);
+                    case 1: product.setPrice((Float)value);
+                }
+
+            fireTableCellUpdated(rowIndex, columnIndex);
+        }
+
+        @Override
+        public Class getColumnClass(int c) {
+            return getValueAt(0, c).getClass();
+        }
+}
     
 }

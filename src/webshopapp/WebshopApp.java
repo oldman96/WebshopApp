@@ -35,7 +35,6 @@ public class WebshopApp extends javax.swing.JFrame {
         headerPanel = new javax.swing.JPanel();
         webshopLabel = new javax.swing.JLabel();
         shopBtn = new javax.swing.JButton();
-        cartBtn = new javax.swing.JButton();
         wishListBtn = new javax.swing.JButton();
         moreFeaturesBtn = new javax.swing.JButton();
         aboutBtn = new javax.swing.JButton();
@@ -73,15 +72,6 @@ public class WebshopApp extends javax.swing.JFrame {
             }
         });
 
-        cartBtn.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        cartBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-shopping-cart-32.png"))); // NOI18N
-        cartBtn.setText("Cart");
-        cartBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cartBtnActionPerformed(evt);
-            }
-        });
-
         wishListBtn.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         wishListBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-wish-list-32.png"))); // NOI18N
         wishListBtn.setText("Wishlist");
@@ -109,19 +99,19 @@ public class WebshopApp extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap(159, Short.MAX_VALUE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(shopBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(wishListBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(moreFeaturesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cartBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(shopBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(wishListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(158, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(aboutBtn)
                 .addContainerGap())
             .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(299, 299, 299)
+                .addComponent(moreFeaturesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(301, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,12 +120,10 @@ public class WebshopApp extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(shopBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cartBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(77, 77, 77)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(wishListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(moreFeaturesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                    .addComponent(wishListBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addComponent(moreFeaturesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(aboutBtn)
                 .addContainerGap())
         );
@@ -176,15 +164,6 @@ public class WebshopApp extends javax.swing.JFrame {
                 }
             });
     }//GEN-LAST:event_shopBtnActionPerformed
-
-    private void cartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartBtnActionPerformed
-//        createCartTableModel();
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Cart(cartTableModel).setVisible(true);
-//            }
-//        });
-    }//GEN-LAST:event_cartBtnActionPerformed
 
 //    private void createProductTableModel(){
 //        try {
@@ -235,7 +214,6 @@ public class WebshopApp extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutBtn;
-    private javax.swing.JButton cartBtn;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton moreFeaturesBtn;
